@@ -5,7 +5,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 import { Button } from "@/components/ui/button";
-import { SCREENPLAY_EDITOR_FORMAT_OPTIONS } from "@/config/constants";
+import { SCREENPLAY_EDITOR_FORMAT_OPTIONS } from "@/features/screenplay-editor/constants";
 
 export const ScreenplayEditor = () => {
   const editor = useEditor({
