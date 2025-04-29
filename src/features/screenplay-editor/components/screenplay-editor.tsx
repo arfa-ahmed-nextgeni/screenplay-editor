@@ -44,6 +44,9 @@ export const ScreenplayEditor = () => {
       },
     },
     immediatelyRender: false,
+    onCreate({ editor }) {
+      editor.commands.focus("end");
+    },
   });
 
   const applyScreenplayFormat = useCallback(
