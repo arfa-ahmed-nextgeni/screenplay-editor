@@ -1,3 +1,5 @@
+import styles from "@/features/screenplay-editor/styles/screenplay-editor.module.css";
+
 export const enum SCREENPLAY_EDITOR_FORMAT {
   SCENE_HEADING = "screenplay-scene-heading",
   ACTION = "screenplay-action",
@@ -33,3 +35,11 @@ export const SCREENPLAY_EDITOR_FORMAT_OPTIONS = [
     icon: "solar:dialog-bold",
   },
 ];
+
+export const INITIAL_SCREENPLAY_EDITOR_CONTENT = `
+<p class="${styles[SCREENPLAY_EDITOR_FORMAT.SCENE_HEADING]}">INT. COFFEE SHOP - DAY</p>
+<p class="${styles[SCREENPLAY_EDITOR_FORMAT.ACTION]}">Sarah types furiously on her laptop.</p>
+<p class="${styles[SCREENPLAY_EDITOR_FORMAT.CHARACTER]}">DAVID</p>
+<p class="${styles[SCREENPLAY_EDITOR_FORMAT.PARENTHETICAL]}">(sarcastically)</p>
+<p class="${styles[SCREENPLAY_EDITOR_FORMAT.DIALOGUE]}">We need more coffee.</p>
+`;

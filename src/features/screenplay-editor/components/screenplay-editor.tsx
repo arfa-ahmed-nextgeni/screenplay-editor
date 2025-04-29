@@ -7,6 +7,7 @@ import { useCallback } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
+  INITIAL_SCREENPLAY_EDITOR_CONTENT,
   SCREENPLAY_EDITOR_FORMAT,
   SCREENPLAY_EDITOR_FORMAT_OPTIONS,
 } from "@/features/screenplay-editor/constants";
@@ -36,6 +37,7 @@ export const ScreenplayEditor = () => {
       ParentheticalExtension,
       DialogueExtension,
     ],
+    content: INITIAL_SCREENPLAY_EDITOR_CONTENT,
     editorProps: {
       attributes: {
         class: cn("focus:outline-none font-mono text-base font-normal"),
