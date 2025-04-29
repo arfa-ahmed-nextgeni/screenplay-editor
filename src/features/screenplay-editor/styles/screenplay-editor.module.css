@@ -1,0 +1,26 @@
+.screenplay-scene-heading {
+  text-transform: uppercase;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.screenplay-action {
+  margin-top: 16px;
+  text-align: left;
+}
+
+.screenplay-character {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.screenplay-parenthetical {
+  text-align: center;
+}
+
+.screenplay-dialogue {
+  width: 50%;
+  text-align: left;
+  margin: 0 auto;
+}
