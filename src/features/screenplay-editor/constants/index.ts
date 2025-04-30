@@ -44,4 +44,4 @@ export const INITIAL_SCREENPLAY_EDITOR_CONTENT = `
 <p class="${styles[SCREENPLAY_EDITOR_FORMAT.DIALOGUE]}">We need more coffee.</p>
 `;
 
-export const LINES_PER_PAGE = 28;
+export const LINES_PER_PAGE = 55;
