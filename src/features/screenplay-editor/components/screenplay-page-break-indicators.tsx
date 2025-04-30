@@ -1,10 +1,10 @@
-export const ScreenplayPageBreakIndicators = ({
-  pageBreakIndices,
-  editorElement,
-}: {
-  pageBreakIndices: number[];
-  editorElement: HTMLElement;
-}) => {
+"use client";
+
+import { useScreenplayEditorState } from "@/features/screenplay-editor/contexts/screenplay-editor-context";
+
+export const ScreenplayPageBreakIndicators = () => {
+  const { pageBreakIndices, editorElement } = useScreenplayEditorState();
+
   return pageBreakIndices.map((breakIndex, i) => {
     if (!editorElement) return null;
 
