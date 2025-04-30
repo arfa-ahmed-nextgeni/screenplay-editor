@@ -28,9 +28,9 @@ Key Formatting Rules Implemented:
 
 | Element       | Style                                                   |
 | ------------- | ------------------------------------------------------- |
-| Scene Heading | UPPERCASE, left-aligned, 16px from top                  |
-| Action        | Left-aligned, 16px from top                             |
-| Character     | UPPERCASE, indented (192px from left) and 16px from top |
+| Scene Heading | UPPERCASE, left-aligned, 16px margin above              |
+| Action        | Left-aligned, 16px margin above                             |
+| Character     | UPPERCASE, indented (192px from left) and 16px margin above |
 | Parenthetical | Indented (144px from left), 50% width                   |
 | Dialogue      | Indented (96px from left), 60% width                    |
 
