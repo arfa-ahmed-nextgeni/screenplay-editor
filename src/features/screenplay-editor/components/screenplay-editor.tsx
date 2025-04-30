@@ -7,6 +7,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   INITIAL_SCREENPLAY_EDITOR_CONTENT,
   LINES_PER_PAGE,
   SCREENPLAY_EDITOR_FORMAT,
@@ -19,6 +24,7 @@ import {
   ParentheticalExtension,
   SceneHeadingExtension,
 } from "@/features/screenplay-editor/editor-extensions";
+import styles from "@/features/screenplay-editor/styles/screenplay-editor.module.css";
 import { getElementTextLineCount } from "@/features/screenplay-editor/utils";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +32,9 @@ export const ScreenplayEditor = () => {
   const editorRef = useRef<HTMLDivElement>(null);
 
   const [pageBreakIndices, setPageBreakIndices] = useState<number[]>([]);
+  const [warnings, setWarnings] = useState<
+    { index: number; message: string }[]
+  >([]);
 
   const editorElement = editorRef.current?.firstChild as HTMLElement;
 
@@ -86,6 +95,7 @@ export const ScreenplayEditor = () => {
 
     let lineCount = 0;
     const breaks: number[] = [];
+    const newWarnings: { index: number; message: string }[] = [];
 
     nodes.forEach((node, index) => {
       const lines = getElementTextLineCount(node);
@@ -93,11 +103,59 @@ export const ScreenplayEditor = () => {
 
       if (lineCount >= LINES_PER_PAGE) {
         breaks.push(index);
+
+        if (
+          node.classList.contains(
+            styles[SCREENPLAY_EDITOR_FORMAT.SCENE_HEADING]
+          ) &&
+          index > 0
+        ) {
+          newWarnings.push({
+            index: index - 1,
+            message: "Scene heading should not be at the bottom of a page",
+          });
+        }
+
+        if (
+          node.classList.contains(styles[SCREENPLAY_EDITOR_FORMAT.DIALOGUE]) &&
+          index > 0 &&
+          nodes[index - 1].classList.contains(
+            styles[SCREENPLAY_EDITOR_FORMAT.CHARACTER]
+          )
+        ) {
+          newWarnings.push({
+            index,
+            message:
+              "Dialogue is separated from its character across a page break",
+          });
+        }
+
+        if (
+          node.classList.contains(
+            styles[SCREENPLAY_EDITOR_FORMAT.PARENTHETICAL]
+          ) &&
+          index > 0 &&
+          index < nodes.length - 1 &&
+          nodes[index - 1].classList.contains(
+            styles[SCREENPLAY_EDITOR_FORMAT.CHARACTER]
+          ) &&
+          nodes[index + 1].classList.contains(
+            styles[SCREENPLAY_EDITOR_FORMAT.DIALOGUE]
+          )
+        ) {
+          newWarnings.push({
+            index,
+            message:
+              "Parenthetical is separated from dialogue across a page break",
+          });
+        }
+
         lineCount = 0;
       }
     });
 
     setPageBreakIndices(breaks);
+    setWarnings(newWarnings);
   }, [editorElement]);
 
   useEffect(() => {
@@ -133,7 +191,7 @@ export const ScreenplayEditor = () => {
 
             return (
               <div
-                key={i}
+                key={`page-break-${i}`}
                 className="absolute left-0 right-0 border-t-2 border-dashed border-blue-300 pointer-events-none"
                 style={{
                   top: `${top}px`,
@@ -142,6 +200,34 @@ export const ScreenplayEditor = () => {
                 <span className="absolute right-0 top-0 bg-blue-100 text-blue-800 text-xs px-1 rounded transform -translate-y-full">
                   Page {i + 1} End
                 </span>
+              </div>
+            );
+          })}
+          {warnings.map((warning, i) => {
+            if (!editorElement) return null;
+
+            const nodes = Array.from(editorElement.children);
+            if (!nodes[warning.index]) return null;
+
+            const node = nodes[warning.index] as HTMLElement;
+            const top = node.offsetTop;
+
+            return (
+              <div
+                key={`warning-${i}`}
+                className={`absolute right-0 bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-l-md z-50`}
+                style={{
+                  top: `${top}px`,
+                }}
+              >
+                <Tooltip>
+                  <TooltipTrigger>
+                    <div className="flex flex-row items-center gap-1">
+                      <Icon icon="material-symbols:warning-outline" /> Warning
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>{warning.message}</TooltipContent>
+                </Tooltip>
               </div>
             );
           })}
