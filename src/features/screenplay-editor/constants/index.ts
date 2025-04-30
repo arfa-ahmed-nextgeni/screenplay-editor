@@ -43,3 +43,5 @@ export const INITIAL_SCREENPLAY_EDITOR_CONTENT = `
 <p class="${styles[SCREENPLAY_EDITOR_FORMAT.PARENTHETICAL]}">(sarcastically)</p>
 <p class="${styles[SCREENPLAY_EDITOR_FORMAT.DIALOGUE]}">We need more coffee.</p>
 `;
+
+export const LINES_PER_PAGE = 28;
