@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ScreenplayEditorWarningMarkers } from "@/features/screenplay-editor/components/screenplay-editor-warning-markers";
 import { ScreenplayFormatToolbar } from "@/features/screenplay-editor/components/screenplay-format-toolbar";
 import { ScreenplayPageBreakIndicators } from "@/features/screenplay-editor/components/screenplay-page-break-indicators";
+import { ScreenplayPageNumbers } from "@/features/screenplay-editor/components/screenplay-page-numbers";
 import { INITIAL_SCREENPLAY_EDITOR_CONTENT } from "@/features/screenplay-editor/constants";
 import {
   ActionExtension,
@@ -83,6 +84,10 @@ export const ScreenplayEditor = () => {
         <ScreenplayFormatToolbar editor={editor} />
         <div className="relative">
           <ScreenplayPageBreakIndicators
+            editorElement={editorElement}
+            pageBreakIndices={pageBreakIndices}
+          />
+          <ScreenplayPageNumbers
             editorElement={editorElement}
             pageBreakIndices={pageBreakIndices}
           />
