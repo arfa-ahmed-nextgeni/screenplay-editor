@@ -1,3 +1,5 @@
+"use client";
+
 import { Icon } from "@iconify/react";
 
 import {
@@ -5,17 +7,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useScreenplayEditorState } from "@/features/screenplay-editor/contexts/screenplay-editor-context";
 
-export const ScreenplayEditorWarningMarkers = ({
-  warnings,
-  editorElement,
-}: {
-  warnings: {
-    index: number;
-    message: string;
-  }[];
-  editorElement: HTMLElement;
-}) => {
+export const ScreenplayEditorWarningMarkers = () => {
+  const { warnings, editorElement } = useScreenplayEditorState();
+
   return warnings.map((warning, i) => {
     if (!editorElement) return null;
 

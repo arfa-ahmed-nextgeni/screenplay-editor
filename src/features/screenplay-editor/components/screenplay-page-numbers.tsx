@@ -1,10 +1,10 @@
-export const ScreenplayPageNumbers = ({
-  pageBreakIndices,
-  editorElement,
-}: {
-  pageBreakIndices: number[];
-  editorElement: HTMLElement;
-}) => {
+"use client";
+
+import { useScreenplayEditorState } from "@/features/screenplay-editor/contexts/screenplay-editor-context";
+
+export const ScreenplayPageNumbers = () => {
+  const { pageBreakIndices, editorElement } = useScreenplayEditorState();
+
   return (
     <>
       <div className="absolute left-0 right-0 flex justify-end p-4">
