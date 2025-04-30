@@ -1,4 +1,4 @@
-# 🎬 Screenplay Editor with Page Awareness
+# Screenplay Editor with Page Awareness
 
 A basic screenplay editor built using React (Next.js) and TipTap that supports essential screenplay formatting and a conceptual page boundary awareness feature based on standard screenplay rules.
 
