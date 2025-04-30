@@ -48,7 +48,9 @@ export const ScreenplayEditor = () => {
     content: INITIAL_SCREENPLAY_EDITOR_CONTENT,
     editorProps: {
       attributes: {
-        class: cn("focus:outline-none font-mono text-[16px] font-normal"),
+        class: cn(
+          "focus:outline-none font-mono text-[16px] font-normal pl-[144px] pr-[96px] pt-[80px]"
+        ),
       },
     },
     immediatelyRender: false,
@@ -107,8 +109,8 @@ export const ScreenplayEditor = () => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <h1 className="text-2xl font-bold my-4">Screenplay Editor</h1>
-      <div className="w-[80vw] h-full border border-gray-300 rounded-lg p-4 m-4">
-        <div className="flex flex-wrap gap-1">
+      <div className="w-[816px] h-full border border-gray-300 rounded-lg">
+        <div className="flex flex-wrap gap-1 p-2">
           {SCREENPLAY_EDITOR_FORMAT_OPTIONS.map(({ id, label, icon }) => (
             <Button
               key={id}
@@ -119,7 +121,7 @@ export const ScreenplayEditor = () => {
             </Button>
           ))}
         </div>
-        <div className="relative border border-gray-300 rounded-lg mt-2">
+        <div className="relative">
           {pageBreakIndices.map((breakIndex, i) => {
             if (!editorElement) return null;
 
