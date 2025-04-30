@@ -109,8 +109,8 @@ export const ScreenplayEditor = () => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <h1 className="text-2xl font-bold my-4">Screenplay Editor</h1>
-      <div className="w-[816px] h-full border border-gray-300 rounded-lg">
-        <div className="flex flex-wrap gap-1 p-2">
+      <div className="w-[816px] h-full border border-gray-300 rounded-lg mb-4">
+        <div className="flex flex-wrap gap-1 p-2 border-b border-gray-300">
           {SCREENPLAY_EDITOR_FORMAT_OPTIONS.map(({ id, label, icon }) => (
             <Button
               key={id}
@@ -148,7 +148,7 @@ export const ScreenplayEditor = () => {
           <EditorContent
             ref={editorRef}
             editor={editor}
-            style={{ minHeight: "50vh" }}
+            style={{ minHeight: "1776px" }}
           />
         </div>
       </div>
